@@ -4,7 +4,6 @@ const modal = document.querySelector(".modal");
 const closeModal = document.querySelector("form span");
 const form = document.querySelector("form");
 const tbody = document.querySelector("tbody");
-
 addBookButton.addEventListener("click", () => {
   modal.showModal();
 });
@@ -33,6 +32,10 @@ function Book(name, author, page, read) {
   this.read = read;
 }
 
+Book.prototype.toggleRead = function () {
+  this.read = this.read === "Yes" ? "No" : "Yes";
+};
+
 function addBookToLibrary(name, author, page, read) {
   const newBook = new Book(name, author, page, read);
   myLibrary.push(newBook);
@@ -47,9 +50,32 @@ function addBookToLibrary(name, author, page, read) {
   });
 
   const editStatus = document.createElement("td");
-  editStatus.innerHTML = `<button class="status">Change Status</button>`;
+  editStatus.innerHTML = `<button id="${
+    myLibrary.length - 1
+  }" class="status">Change Status</button>`;
   const deleteBook = document.createElement("td");
-  deleteBook.innerHTML = `<button class="delete">Delete Book</button>`;
+  deleteBook.innerHTML = `<button  id="${
+    myLibrary.length - 1
+  }" class="delete">Delete Book</button>`;
 
   addTr.append(editStatus, deleteBook);
 }
+
+tbody.addEventListener("click", function (event) {
+  const target = event.target;
+
+  if (target.classList.contains("status")) {
+    const bookId = target.getAttribute("id");
+    myLibrary[bookId].toggleRead();
+
+    const readCell = target.closest("tr").children[3];
+    readCell.textContent = myLibrary[bookId].read;
+  }
+
+  if (target.classList.contains("delete")) {
+    const bookId = target.getAttribute("id");
+    myLibrary.splice(bookId, 1);
+    const rowToDelete = target.closest("tr");
+    tbody.removeChild(rowToDelete);
+  }
+});
