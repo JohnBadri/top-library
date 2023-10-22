@@ -102,10 +102,20 @@ button:hover {
 }
 
 table {
-  width: 60%;
+  width: 98%;
+  max-width: 1800px;
   font-size: 18px;
   text-align: left;
   border: 1px solid var(--primary-color);
+}
+
+table button {
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+table button:hover {
+  box-shadow: var(--secondary-color) 0 0 0 3px, transparent 0 0 0 0;
 }
 
 /* Table Header */
@@ -113,7 +123,7 @@ th {
   background-color: var(--secondary-color);
   color: var(--white-color);
   font-weight: var(--medium);
-  padding: 12px 20px;
+  padding: 5px 10px;
   border-bottom: 1px solid var(--primary-color);
   border-radius: 0;
 }
@@ -123,8 +133,9 @@ tr {
 }
 
 td {
-  padding: 12px 20px;
+  padding: 5px;
   border-bottom: 1px solid var(--primary-color);
+  vertical-align: middle;
 }
 
 tr:hover {
