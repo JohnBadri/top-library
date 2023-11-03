@@ -21,4 +21,4 @@ A simple book management tool created as part of The Odin Project's curriculum. 
 
 ## Contributions
 
-This project is open for improvements and additional features. Feel free to fork, submit issues, and create pull requests for any contributions you have in mind.
+This project is open for improvements and additional features.
